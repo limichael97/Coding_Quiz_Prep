@@ -3,7 +3,8 @@ var click = document.getElementById('start');
 var askQuestions = document.getElementById('title')
 var options = document.getElementById('text')
 var btnGone = document.getElementById('start')
-var timeLeft = 75;
+var checkAns = document.getElementById("checkAnswers")
+var timeLeft = 40;
 var questionIndex = 0;
 var correctAnswers = 0;
 var targetMain = document.getElementById('main');
@@ -124,17 +125,30 @@ var questions = [
     }
 ];
 
+function finalText() {
+    var done = document.getElementById("allDone");
+    var doneAll = document.createElement("h1");
+    doneAll.innerHTML= "ALL DONE!";
+    var finalScore = document.createElement("p");
+    finalScore.innerHTML = "Your final score is " + correctAnswers;
+    allDone.appendChild(doneAll);
+    allDone.appendChild(finalScore);
+}
+
 function timerStart() {
     var countdown = setInterval(function() {
         if (timeLeft >= 0){
             timerEl.textContent = "Time: " + timeLeft + " seconds";
             timeLeft--
-        } else {
+        } 
+
+        if ((questionIndex == questions.length) || (timeLeft===0)) {
             timerEl.textContent=""
+            alert("End of Quiz");
             targetMain.classList.add("hidden")
             form.classList.remove("hidden")
+            finalText()
             clearInterval(countdown)
-            return;
         }
     }, 1000);
 };
@@ -157,24 +171,31 @@ function questionStart() {
     }
 };
 
+function checkAnswers() {
+    var varifyAnswer= document.createElement("p");
+    varifyAnswer.innerHTML = "Correct!";
+    options.appendChild(varifyAnswer);
+
+}
+
 function nextQuestion(event) {
     questionIndex++
     console.log(questionIndex)
-    if (questionIndex == questions.length) {
-        timeLeft= 0;
-        alert("End of Quiz");
-        targetMain.classList.add("hidden")
-        form.classList.remove("hidden")
-        return;
-    }
     console.log(event.target.innerText)
     console.log(event.target.value)
     if (event.target.value == "true") {
         correctAnswers++
         console.log(correctAnswers)
-    } else { 
+        varifyOption.classList.remove("hidden")
+        varifyOption.innerHTML= "Correct"
+    }
+    
+    else if (event.target.value == "false") { 
+        varifyOption.classList.remove("hidden")
+        varifyOption.innerHTML = "False";
         timeLeft -= 10;
     }
+
     askQuestions.innerHTML = questions[questionIndex].question;
     options.innerHTML = "";
     for (i =0; i < 4; i++) {
@@ -183,6 +204,7 @@ function nextQuestion(event) {
         btn.innerText = questions[questionIndex].answers[i].answer;
         btn.value= questions[questionIndex].answers[i].correct;
         options.appendChild(btn)
+       
         btn.addEventListener("click", nextQuestion);
     }
 }

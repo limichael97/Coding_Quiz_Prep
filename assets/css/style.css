@@ -35,6 +35,10 @@ button {
     font-size: 20px;
 }
 
+button:hover {
+    opacity: 0.75;
+}
+
 button a {
     text-decoration: none;
     color: white;
@@ -54,4 +58,15 @@ button a {
 
 .optionClass {
     display: block;
+}
+
+.center {
+    text-align: center;
+}
+
+.varifyPad {
+    border-top: solid 2px grey;
+    margin-top: 40px;
+    color: grey;
+    font-size: 24px;
 }
