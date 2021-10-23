@@ -1,3 +1,5 @@
+<!--This page/document is the 'high score' page where the stored data, if any will show-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,24 +9,34 @@
     <title>High Scores</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
     <h1 class = "highscore" >High Scores</h1>
 
     <main>
+        <!-- Data is shown here-->
         <section >
             <ol id="rank">
 
             </ol>
         </section>
 
+        <!--Button to go back to 'index.html'-->
         <button class = "buttonPad">
             <a href ="index.html"> Go Back </a>
         </button>
 
+        <!--Clears the high score by clearing the local.storage -->
         <button class = "buttonPad" id ="clear">
             Clear High Scores
         </button>
     </main>
+
+    <footer>
+        <div class="foot">
+            &copy; Designed by Michael Li 👨‍💻
+        </div>
+    </footer>
     
     <script src="./assets/js/highscore.js"></script>
 </body>

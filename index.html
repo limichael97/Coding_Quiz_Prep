@@ -10,8 +10,10 @@
 </head>
 
 <body>
+    <!-- header that includes link to 'high scores' and shows timer when quiz starts-->
     <header class = "page">
         <div class = "high-score" >
+            <!--links to 'highscore.html' to see all the high scores, can be accessed anytime-->
             <a href ="highscore.html"> View high score </a> 
         </div>
 
@@ -21,6 +23,7 @@
 
     </header>
 
+    <!--The main content that includes the quiz, questions, and options. Dynamically made with js-->
     <main id ="main" >
         <section>
             <h1 id = "title">Coding Quiz Challenge</h1>
@@ -39,6 +42,7 @@
         <button class="btn buttonPad" id="start" type="submit">Start Quiz</button>
     </main>
 
+    <!--After finishing the quiz, this form to input data will unhide and the 'main' section will be hidden-->
     <div id = "form" class = "hidden center">
         <div id = "allDone">
 
@@ -47,12 +51,16 @@
 
         <input id ="initials">
         <button id ="save">
+            <!--links to 'highscore.html' to see all the high scores-->
             <a href ="highscore.html"> Save Score </a>
         </button>
     </div>
 
+    <!-- footer -->
     <footer>
-
+        <div class="foot">
+            &copy; Designed by Michael Li 👨‍💻
+        </div>
     </footer>
 
     <script src="./assets/js/script.js"></script>

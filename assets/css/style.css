@@ -70,3 +70,7 @@ button a {
     color: grey;
     font-size: 24px;
 }
+
+.foot {
+    float: right;
+}
