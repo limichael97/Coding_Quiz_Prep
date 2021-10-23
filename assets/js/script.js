@@ -21,20 +21,20 @@ var questions = [
      question:"Commonly used data types DO NOT include:",
      answers: [
          {
-             answer: "a",
+             answer: "a. strings",
              correct: false
          },
          {
-            answer: "b",
+            answer: "b. boolean",
             correct: false
          },
          {
-            answer: "c",
-            correct: false
-         },
-         {
-            answer: "d",
+            answer: "c. alert",
             correct: true
+         },
+         {
+            answer: "d. numbers",
+            correct: false
          }
      ],
     },
@@ -42,19 +42,19 @@ var questions = [
      question: "The condition in an if/else statement is enclosed within ___.", 
      answers: [
         {
-            answer: "e",
+            answer: "a. quotes",
             correct: false
         },
         {
-           answer: "f",
+           answer: "b. curly brackets",
            correct: false
         },
         {
-           answer: "g",
+           answer: "c. parentheses",
            correct: true
         },
         {
-           answer: "h",
+           answer: "d. square brackets",
            correct: false
         }
     ],
@@ -63,20 +63,20 @@ var questions = [
      question: "Arrays in Javascript can be used to store ___.",
      answers: [
         {
-            answer: "i",
-            correct: true
+            answer: "a. numbers and strings",
+            correct: false
         },
         {
-           answer: "j",
+           answer: "b. other arrays",
            correct: false
         },
         {
-           answer: "k",
+           answer: "c. booleans",
            correct: false
         },
         {
-           answer: "l",
-           correct: false
+           answer: "d. all of the above",
+           correct: true
         }
     ], 
     },
@@ -84,20 +84,20 @@ var questions = [
      question: "String values must be enclosed within ___ when being assigned to variables.",
      answers: [
         {
-            answer: "m",
+            answer: "a. commas",
             correct: false
         },
         {
-           answer: "n",
+           answer: "b. curly brackets",
            correct: false
         },
         {
-           answer: "o",
-           correct: false
-        },
-        {
-           answer: "p",
+           answer: "c. quotes",
            correct: true
+        },
+        {
+           answer: "d. parentheses",
+           correct: false
         }
     ], 
     },
@@ -105,19 +105,19 @@ var questions = [
      question: "A very useful tool to debug arrays is:",
      answers: [
         {
-            answer: "a",
+            answer: "a. Javascript",
             correct: false
         },
         {
-           answer: "b",
+           answer: "b. Terminal/bash",
            correct: false
         },
         {
-           answer: "c",
+           answer: "c. For loops",
            correct: false
         },
         {
-           answer: "d",
+           answer: "d. Console.log",
            correct: true
         }
     ],
@@ -131,7 +131,6 @@ function timerStart() {
             timeLeft--
         } else {
             timerEl.textContent=""
-            alert("End of Quiz");
             targetMain.classList.add("hidden")
             form.classList.remove("hidden")
             clearInterval(countdown)
@@ -150,6 +149,7 @@ function questionStart() {
     askQuestions.innerHTML = questions[questionIndex].question;
     for (i =0; i < 4; i++) {
         var btn = document.createElement("button");
+        btn.className =  "optionClass";
         btn.innerText = questions[questionIndex].answers[i].answer;
         btn.value= questions[questionIndex].answers[i].correct;
         options.appendChild(btn);
@@ -162,6 +162,7 @@ function nextQuestion(event) {
     console.log(questionIndex)
     if (questionIndex == questions.length) {
         timeLeft= 0;
+        alert("End of Quiz");
         targetMain.classList.add("hidden")
         form.classList.remove("hidden")
         return;
@@ -172,18 +173,20 @@ function nextQuestion(event) {
         correctAnswers++
         console.log(correctAnswers)
     } else { 
-        timeLeft -= 5;
+        timeLeft -= 10;
     }
     askQuestions.innerHTML = questions[questionIndex].question;
     options.innerHTML = "";
     for (i =0; i < 4; i++) {
         var btn = document.createElement("button");
+        btn.className =  "optionClass";
         btn.innerText = questions[questionIndex].answers[i].answer;
         btn.value= questions[questionIndex].answers[i].correct;
         options.appendChild(btn)
         btn.addEventListener("click", nextQuestion);
     }
 }
+
 
 function saveScore() {
     // capture Results 
@@ -193,7 +196,7 @@ function saveScore() {
     // save to local storage
     var data = {
         initials: document.getElementById("initials").value,
-        score: correctAnswers
+        score: correctAnswers 
     }
     console.log(highScores)
     highScores.push(data)
@@ -209,34 +212,3 @@ function buttonStart() {
 click.addEventListener("click", buttonStart)
 document.getElementById("save").addEventListener("click", saveScore)
 
-
-/*Commonly used data tyoes DO NOT include: 
-1. strings
-2. booleans 
-3. alert
-4. numbers
-
-The condition in an if/else statement is enclosed within ___.
-1. quotes
-2. curly brackets
-3. parentheses
-4. square brackets
-
-Arrays in Javascript can be used to store ___.
-1. numbers and strings
-2. other arrays
-3. booleans
-4. all of the above
-
-String values must be enclosed within ___ when being assigned to variables.
-1. commas
-2. curly brackets
-3. quotes
-4. parentheses
-
-A very useful tool to debug arrays is:
-1. Javascript
-Terminal/bash
-For loops
-Console.log
-*/

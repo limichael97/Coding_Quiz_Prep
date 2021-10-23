@@ -35,6 +35,23 @@ button {
     font-size: 20px;
 }
 
+button a {
+    text-decoration: none;
+    color: white;
+}
+
 .hidden {
     display: none;
+}
+
+.highscore {
+    text-align: center;
+}
+
+.buttonPad {
+    margin-top: 40px;
+}
+
+.optionClass {
+    display: block;
 }
